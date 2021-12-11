@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-var dir string = cwdir()
+//var dir string = cwdir()
 
 type ismodified struct {
 	utrbool   bool
