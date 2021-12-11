@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/athul/shelby/mods"
+	"github.com/cyberbliss/shelby/mods"
 	"github.com/urfave/cli"
 )
 
@@ -14,7 +14,7 @@ func main() {
 		sbInit,
 		sbInfo,
 	}
-	app.Run(os.Args)
+	_ = app.Run(os.Args)
 }
 
 var sbInit = cli.Command{

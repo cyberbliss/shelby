@@ -14,8 +14,6 @@ builds:
       - darwin
     goarch:
       - amd64
-      - arm64
-      - arm
 archives:
   - replacements:
       darwin: Darwin
@@ -32,15 +30,15 @@ changelog:
       - "^test:"
 release:
   github:
-    owner: athul
+    owner: cyberbliss
     name: shelby
 brews:
   - name: shelby
     tap:
-      owner: athul
+      owner: cyberbliss
       name: homebrew-tap
       token: "{{ .Env.HB_TOKEN }}"
     folder: Formula
-    homepage: "https://github.com/athul/shelby"
+    homepage: "https://github.com/cyberbliss/shelby"
     description: "A fast and minimal Shell Prompt in Go"
     install: bin.install "shelby"%
