@@ -3,7 +3,7 @@ package mods
 var zsh = `
 setopt PROMPT_SUBST
 NW=$'\n'
-PROMPT='$(shelby info)${NW}%(?.%F{green}.%F{red})❯%f'`
+PROMPT='$(shelby info)${NW}%(?.%F{green}.%F{red})❯%f '`
 
 var bash = `prompt_shelby_load() {
 if [ $? != 0 ]; then

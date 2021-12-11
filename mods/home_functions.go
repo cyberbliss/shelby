@@ -33,7 +33,7 @@ func stripHomeDir(path string) string {
 		return strings.Replace(path, os.Getenv("HOME"), color.Sprintf(color.BrightGreen, name+" on "+host)+" ~", 1)
 	}
 	if getgopath() {
-		return strings.Replace(color.Sprintf(color.BrightMagenta, path), os.Getenv("HOME"), "🐭 ~", 1)
+		return strings.Replace(color.Sprintf(color.BrightMagenta, path), os.Getenv("HOME"), "🏠 ~", 1)
 	}
 	return strings.Replace(path, os.Getenv("HOME"), "~", 1)
 }
