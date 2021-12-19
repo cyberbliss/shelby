@@ -32,22 +32,40 @@ func getDir(cwd string) string {
 	HandleError(err)
 	env := getifvenv()
 
+	kubeStatus := make(chan string)
+	gcloudStatus := make(chan string)
+	go dispActiveKubeContext(kubeStatus)
+	go dispActiveGcloudContext(gcloudStatus)
+	ks := <-kubeStatus
+	gs := <-gcloudStatus
+
+	var dispKG string
+	switch {
+	case len(ks) > 0 && len(gs) > 0:
+		dispKG = "(" + gs + " | " + ks + ")"
+	case len(ks) > 0 && len(gs) <= 0:
+		dispKG = "(" + ks + ")"
+	case len(ks) <= 0 && len(gs) > 0:
+		dispKG = "(" + gs + ")"
+	default:
+		dispKG = ""
+	}
 	if gitDir != "" && env != "" && env != "." {
 		isconmod := iscontentmodified(gitDir)
 		status := make(chan string)
 		go dispstats(isconmod, pathToDisplay, gitDir, status)
 		imod := <-status
-		return imod + color.Sprintf(color.BrightBlack, "(%s)", env)
+		return imod + color.Sprintf(color.BrightBlack, "(%s)", env) + dispKG
 	}
 	if gitDir != "" {
 		isconmod := iscontentmodified(gitDir)
 		status := make(chan string)
 		go dispstats(isconmod, pathToDisplay, gitDir, status)
 		imod := <-status
-		return imod
+		return imod + dispKG
 	}
 
-	return color.Sprintf(color.BrightCyan, pathToDisplay)
+	return color.Sprintf(color.BrightCyan, pathToDisplay) + dispKG
 }
 
 // findNearestAccessiblePath takes the last string after the splitting
