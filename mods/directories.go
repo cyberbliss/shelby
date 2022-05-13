@@ -42,11 +42,11 @@ func getDir(cwd string) string {
 	var dispKG string
 	switch {
 	case len(ks) > 0 && len(gs) > 0:
-		dispKG = "(" + gs + " | " + ks + ")"
+		dispKG = " (" + gs + " | " + ks + ")"
 	case len(ks) > 0 && len(gs) <= 0:
-		dispKG = "(" + ks + ")"
+		dispKG = " (" + ks + ")"
 	case len(ks) <= 0 && len(gs) > 0:
-		dispKG = "(" + gs + ")"
+		dispKG = " (" + gs + ")"
 	default:
 		dispKG = ""
 	}
